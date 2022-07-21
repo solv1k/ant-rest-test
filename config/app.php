@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    'api_endpoint' => env('API_ENDPOINT', 'http://185.209.160.70:5080/StreamingApp/rest/'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StreamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function() {
-    Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+Route::middleware(['auth'])->prefix('/dashboard')->group(function() {
+    Route::controller(DashboardController::class)->group(function() {
+        Route::get('/', 'index')->name('dashboard');
+    });
+
+    Route::controller(StreamController::class)->group(function() {
+        Route::get('/streams/create', 'create')->name('stream-create-form');
+        Route::post('/streams/create', 'store')->name('stream-store');
+    });
 });
 
 require __DIR__.'/auth.php';
