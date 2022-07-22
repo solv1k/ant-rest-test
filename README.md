@@ -10,12 +10,13 @@
 3. Установите пакеты Composer, командой `composer install`
 4. Установите пакеты NPM, командой `npm install`
 5. Сбилдите NPM, командой `npm run build`
-6. Сгенерируйте ключ приложения, командой `php artisan key:generate`
-7. Смигрируйте транзацкии в БД, командой `php artisan migrate`
+6. Создайте пустой .env файл, командой `echo "APP_KEY=" >> .env`
+7. Сгенерируйте ключ приложения, командой `php artisan key:generate`
+8. Смигрируйте транзацкии в БД, командой `php artisan migrate`
 
 ### Конфиг .env
 
-Создайте файл .env в корне проекта и внесите в него параметры для работы с Ant Media Server (**замение параметры в квадратных скобках на свои**):
+Откройте файл .env в корне проекта и внесите в него параметры для работы с Ant Media Server (**замение параметры в квадратных скобках на свои**):
 
 ANT_SCHEME=[http]
 
@@ -24,6 +25,18 @@ ANT_SERVER=[0.0.0.0]
 ANT_PORT=[5080]
 
 ANT_APPNAME=[YourApp]
+
+DB_CONNECTION=mysql
+
+DB_HOST=127.0.0.1
+
+DB_PORT=3306
+
+DB_DATABASE=[dbname]
+
+DB_USERNAME=[user]
+
+DB_PASSWORD=[password]
 
 ## Запуск проекта
 
