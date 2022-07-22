@@ -15,11 +15,11 @@
 
 ### Конфиг .env
 
-Создайте файл .env в корне проекта и внесите в него параметры для работы с Ant Media Server (**замение параметры в треугольных скобках на свои**):
-ANT_SCHEME=<https>
-ANT_SERVER=<0.0.0.0>
-ANT_PORT=<5080>
-ANT_APPNAME=<YourApp>
+Создайте файл .env в корне проекта и внесите в него параметры для работы с Ant Media Server (**замение параметры в квадратных скобках на свои**):
+ANT_SCHEME=[http]
+ANT_SERVER=[0.0.0.0]
+ANT_PORT=[5080]
+ANT_APPNAME=[YourApp]
 
 ## Лицензия Laravel
 
