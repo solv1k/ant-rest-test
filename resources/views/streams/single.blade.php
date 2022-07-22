@@ -12,8 +12,10 @@
         <div class="card mb-4">
             <div class="card-header">Информация для владельца</div>
             <div class="card-body fw-bold">
-                <div class="mb-2">Для вещания по протоколу RTMP используйте ссылку: <code>{{ $stream->ant_data_online->rtmpURL }}</code></div>
-                <div>Данные для авторизации: <code>{{ $stream->ant_data_online->username }}</code> : <code>{{ $stream->ant_data_online->password }}</code></div>
+                <div class="mb-2">Для вещания по протоколу RTMP используйте ссылку:<br><code>{{ $stream->ant_data_online->rtmpURL }}</code></div>
+                <div>Данные авторизации:</div>
+                <div>логин <code>{{ $stream->ant_data_online->username }}</code></div>
+                <div>пароль <code>{{ $stream->ant_data_online->password }}</code></div>
             </div>
         </div>
     @endcan
@@ -25,7 +27,7 @@
             class="stream-frame-full"
         ></iframe>
     @else
-        <img src="{{ $stream->preview_url_path }}" alt="Preview" width="300">
+        <img src="{{ $stream->preview_url_path }}" alt="Preview" width="600">
     @endif
 
 @endsection

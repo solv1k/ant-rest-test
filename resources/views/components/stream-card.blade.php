@@ -1,10 +1,17 @@
 <div class="card my-4">
     <div class="card-header">
-        {{ $stream->name }} 
-        <span class="text-muted">{{ $stream->type }} [{{ $stream->isOnline() ? 'Online' : 'Offline' }}]</span>
+        {{ $stream->name }}
+
+        <span class="text-muted">{{ '@' . $stream->user->name }}</span>
+
+        @if ($stream->isOnline())
+            <span class="badge bg-success">Online</span>
+        @else
+            <span class="badge bg-secondary">Offline</span>
+        @endif
     </div>
     <div class="card-body">
-        <div class="mb-2">
+        <div class="card-description mb-2">
             {{ $stream->description }}
         </div>
         <img src="{{ $stream->preview_url_path }}" alt="Preview" width="300">

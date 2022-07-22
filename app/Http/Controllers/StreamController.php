@@ -37,10 +37,10 @@ class StreamController extends RestApiController
         $antStreamData = $this->restApiService->post("/v2/broadcasts/create", $streamDTO->toArray());
 
         // сохраняем стрим в БД (добавляем данные из API)
-        $createdStream = $this->streamService->storeWithAntData($request, $antStreamData);
+        $stream = $this->streamService->storeWithAntData($request, $antStreamData);
 
         // редиректим на главную
-        return redirect(route('stream-show', compact('createdStream')));
+        return redirect(route('stream-show', compact('stream')));
     }
 
     // страница просмотра стрима
