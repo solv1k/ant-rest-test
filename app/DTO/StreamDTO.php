@@ -22,6 +22,12 @@ class StreamDTO extends DataTransferObject
 
     public string | null $playListStatus;
 
+    public string | null $rtmpURL;
+
     #[CastWith(StreamPlaylistItemCaster::class)]
-    public array $playListItemList;
+    public array | null $playListItemList;
+
+    public string | null $username;
+
+    public string | null $password;
 }

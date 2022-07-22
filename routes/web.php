@@ -27,6 +27,7 @@ Route::middleware(['auth'])->prefix('/dashboard')->group(function() {
     Route::controller(StreamController::class)->group(function() {
         Route::get('/streams/create', 'create')->name('stream-create-form');
         Route::post('/streams/create', 'store')->name('stream-store');
+        Route::get('/streams/{stream}', 'show')->name('stream-show');
     });
 });
 

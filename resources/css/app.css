@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.stream-frame {
+.stream-frame-preview {
     width: 100%;
     height: 200px;
+}
+
+.stream-frame-full {
+    width: 100%;
+    height: 480px;
 }

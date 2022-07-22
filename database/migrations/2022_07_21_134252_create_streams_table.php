@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('streams', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('name', 250);
             $table->text('description')->nullable();
-            $table->string('preview_url', 250);
+            $table->string('preview_url', 250)->nullable();
             $table->json('ant_json');
             $table->timestamps();
         });

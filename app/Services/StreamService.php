@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\DTO\StreamDTO;
 use App\Http\Requests\StreamStoreRequest;
-use App\Models\Stream;
 
 class StreamService
 {
@@ -13,14 +12,15 @@ class StreamService
      */
     public function createDtoFromStoreRequest(StreamStoreRequest $request)
     {
+        /** @var \App\Models\User */
+        $user = auth()->user();
+
         $data = array_merge($request->validated(), [
             'streamId' => md5(time()),
             'type' => 'liveStream',
             'status' => 'created',
-            'playListItemList' => [[
-                'streamUrl' => $request->preview_url,
-                'type' => 'VoD'
-            ]]
+            'username' => $user->name,
+            'password' => $user->generateStreamPassword()
         ]);
 
         return new StreamDTO($data);
@@ -33,9 +33,21 @@ class StreamService
     {
         $antStreamDTO = new StreamDTO($antStreamData);
 
-        $stream = Stream::create(array_merge($request->validated(), [
+        /** @var \App\Models\User */
+        $user = auth()->user();
+
+        // создаем стрим
+        $stream = $user->streams()->create(array_merge($request->validated(), [
             'ant_json' => json_encode($antStreamDTO)
         ]));
+
+        // сохраняем превью
+        if ($request->hasFile('preview')) {
+            $path = $request->file('preview')->store('public/files/previews');
+            $stream->setPreviewUrlPath($path);
+        }
+
+        $stream->fresh();
 
         return $stream;
     }

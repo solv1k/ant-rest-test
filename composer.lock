@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "436658d176698fdfd3f52caf6ac4c51b",
+    "content-hash": "9c10cafa3d2ff71742b76007208c5021",
     "packages": [
         {
             "name": "brick/math",
@@ -892,6 +892,90 @@
                 }
             ],
             "time": "2022-06-20T21:43:11+00:00"
+        },
+        {
+            "name": "intervention/image",
+            "version": "2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "04be355f8d6734c826045d02a1079ad658322dad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/04be355f8d6734c826045d02a1079ad658322dad",
+                "reference": "04be355f8d6734c826045d02a1079ad658322dad",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1 || ^2.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5.15"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@intervention.io",
+                    "homepage": "https://intervention.io/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "support": {
+                "issues": "https://github.com/Intervention/image/issues",
+                "source": "https://github.com/Intervention/image/tree/2.7.2"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/interventionio",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Intervention",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-05-21T17:30:32+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2952,6 +3036,64 @@
                 }
             ],
             "time": "2022-03-27T21:42:02+00:00"
+        },
+        {
+            "name": "rolandstarke/laravel-thumbnail",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rolandstarke/laravel-thumbnail.git",
+                "reference": "a7b513e335ae3977b10f4d3e41ffee45655d36cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rolandstarke/laravel-thumbnail/zipball/a7b513e335ae3977b10f4d3e41ffee45655d36cd",
+                "reference": "a7b513e335ae3977b10f4d3e41ffee45655d36cd",
+                "shasum": ""
+            },
+            "require": {
+                "intervention/image": "^2.0",
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rolandstarke\\Thumbnail\\ThumbnailServiceProvider"
+                    ],
+                    "aliases": {
+                        "Thumbnail": "Rolandstarke\\Thumbnail\\Facades\\Thumbnail"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rolandstarke\\Thumbnail\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roland Starke"
+                }
+            ],
+            "description": "Laravel Thumbnail generator",
+            "keywords": [
+                "image",
+                "laravel",
+                "thumbnail"
+            ],
+            "support": {
+                "issues": "https://github.com/rolandstarke/laravel-thumbnail/issues",
+                "source": "https://github.com/rolandstarke/laravel-thumbnail/tree/v1.0.5"
+            },
+            "time": "2022-03-15T07:29:57+00:00"
         },
         {
             "name": "spatie/data-transfer-object",

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Генерирует пароль для стрима.
+     */
+    public function generateStreamPassword()
+    {
+        return md5(implode('_', [$this->id, Str::random(32), time()]));
+    }
+
+    /**
+     * Стримы пользователя.
+     */
+    public function streams()
+    {
+        return $this->hasMany(Stream::class);
+    }
 }

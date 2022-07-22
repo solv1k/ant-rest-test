@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('dash-title', __('Dashboard'))
+@section('dash-title', __('Streams'))
 
 @section('dash-debug')
     @php

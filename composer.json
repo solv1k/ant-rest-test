@@ -11,6 +11,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "nyholm/psr7": "^1.5",
+        "rolandstarke/laravel-thumbnail": "^1.0",
         "spatie/data-transfer-object": "^3.8",
         "symfony/psr-http-message-bridge": "^2.1"
     },

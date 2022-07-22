@@ -11,7 +11,7 @@ class StreamStoreRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:250',
             'description' => 'max:1000',
-            'preview_url' => 'url'
+            'preview' => 'nullable|file|mimes:png,jpg|dimensions:min_width=400,min_height=200|max:4096'
         ];
     }
 }
