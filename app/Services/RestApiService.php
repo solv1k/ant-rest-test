@@ -7,8 +7,12 @@ use Closure;
 use Exception;
 use Illuminate\Support\Str;
 
+/**
+ * Rest API сервис для работы с Ant Media Server.
+ */
 class RestApiService implements RestApiServiceContract
 {
+    /** Статус успешного ответа */
     const SUCCESS_STATUS_CODE = 200;
 
     /** @var \GuzzleHttp\ClientInterface */

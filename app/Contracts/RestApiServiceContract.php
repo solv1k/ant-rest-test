@@ -6,7 +6,7 @@ use Closure;
 use Exception;
 
 /**
- * Интерфейс описывающий основные методы для отправки запросов по Rest API.
+ * Интерфейс, который описывает основные методы для работы с Rest API.
  */
 interface RestApiServiceContract
 {
