@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Contracts\RestApiServiceContract;
 use App\DTO\StreamDTO;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class Stream extends Model
 {
@@ -50,7 +50,8 @@ class Stream extends Model
         if ($this->cached_ant_data_online)
             return $this->cached_ant_data_online;
         
-        $restApiService = app('RestApiService');
+        /** @var RestApiServiceContract */
+        $restApiService = app(RestApiServiceContract::class);
 
         $streamDTO = new StreamDTO($restApiService->get("/v2/broadcasts/" . $this->ant_data->streamId));
 

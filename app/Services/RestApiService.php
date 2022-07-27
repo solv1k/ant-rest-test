@@ -2,25 +2,24 @@
 
 namespace App\Services;
 
+use App\Contracts\RestApiServiceContract;
 use Closure;
 use Exception;
 use Illuminate\Support\Str;
 
-class RestApiService
+class RestApiService implements RestApiServiceContract
 {
     const SUCCESS_STATUS_CODE = 200;
 
-    /**
-     * @var \GuzzleHttp\ClientInterface
-     */
-    private $client;
+    /** @var \GuzzleHttp\ClientInterface */
+    protected $client;
 
     /**
      * Конструктор сервиса Rest API.
      */
-    public function __construct()
+    public function __construct(\GuzzleHttp\ClientInterface $client)
     {
-        $this->client = app('HttpClient');
+        $this->client = $client;
     }
 
     /**
@@ -29,8 +28,12 @@ class RestApiService
      * @return array
      * @throws Exception
      */
-    public function request(string $method, string $uri = "", array $params = [], Closure $onError = null)
-    {
+    protected function request(
+        string $method, 
+        string $uri = "", 
+        array $params = [], 
+        ?Closure $onError = null
+    ): array {
         $method = strtoupper($method);
 
         if (Str::startsWith($uri, '/')) {
@@ -68,8 +71,9 @@ class RestApiService
      * Выполняет GET-запрос и возвращает массив с данными ответа.
      * 
      * @return array
+     * @throws Exception
      */
-    public function get(string $uri = "", array $params = [], Closure $onError = null)
+    public function get(string $uri = "", array $params = [], ?Closure $onError = null): array
     {
         return $this->request('GET', $uri, $params, $onError);
     }
@@ -78,8 +82,9 @@ class RestApiService
      * Выполняет POST-запрос и возвращает массив с данными ответа.
      * 
      * @return array
+     * @throws Exception
      */
-    public function post(string $uri = "", array $params = [], Closure $onError = null)
+    public function post(string $uri = "", array $params = [], ?Closure $onError = null): array
     {
         return $this->request('POST', $uri, $params, $onError);
     }

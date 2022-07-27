@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Services\RestApiService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,20 +14,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // HTTP-клиент для Rest API, по умолчанию \GuzzleHttp\Client
-        $this->app->bind('HttpClient', function () {
+        // HTTP-клиент для Rest API
+        $this->app->bind(\GuzzleHttp\ClientInterface::class, function () {
             return new \GuzzleHttp\Client([
                 'base_uri' => config('ant.scheme') . '://' . 
                                 config('ant.server') . ':' . 
                                 config('ant.port') . '/' . 
-                                config('ant.app_name') . '/rest/'
+                                config('ant.app_name') . '/rest/',
+                'timeout'  => config('ant.timeout')
             ]);
         });
 
-        // сервис для работы с Rest API Ant
-        $this->app->bind('RestApiService', function () {
-            return new RestApiService;
-        });
+        // сервис для работы с Rest API
+        $this->app->bind(
+            \App\Contracts\RestApiServiceContract::class, 
+            \App\Services\RestApiService::class
+        );
     }
 
     /**
