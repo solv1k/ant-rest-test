@@ -3,7 +3,9 @@
 @section('dash-title', __('Streams'))
 
 @section('dash-content')
+
     <h3>Создание нового стрима</h3>
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -13,6 +15,7 @@
             </ul>
         </div>
     @endif
+
     <form action="{{ route('stream-store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input name="name" type="text" class="control form-control mt-4 mb-2" placeholder="Название">
@@ -23,4 +26,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
+
 @endsection
