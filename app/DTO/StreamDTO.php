@@ -12,22 +12,22 @@ class StreamDTO extends DataTransferObject
 
     public string $name;
 
-    public string | null $description;
+    public ?string $description;
 
-    public string | null $status;
+    public ?string $status;
 
-    public string | null $type;
+    public ?string $type;
 
-    public string | null $publishType;
+    public ?string $publishType;
 
-    public string | null $playListStatus;
+    public ?string $playListStatus;
 
-    public string | null $rtmpURL;
+    public ?string $rtmpURL;
 
     #[CastWith(StreamPlaylistItemCaster::class)]
-    public array | null $playListItemList;
+    public ?array $playListItemList;
 
-    public string | null $username;
+    public ?string $username;
 
-    public string | null $password;
+    public ?string $password;
 }
