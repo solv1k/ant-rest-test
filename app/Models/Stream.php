@@ -81,10 +81,11 @@ class Stream extends Model
      */
     public function getPreviewUrlPathAttribute()
     {
-        if ($this->preview_url)
+        if ($this->preview_url) {
             return url(str_replace('public', 'storage', $this->preview_url));
-        else
-            return 'https://via.placeholder.com/800x400?text=Preview+placeholder';
+        }
+
+        return 'https://via.placeholder.com/800x400?text=Preview+placeholder';
     }
 
     /**
