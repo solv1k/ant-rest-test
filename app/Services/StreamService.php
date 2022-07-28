@@ -5,9 +5,20 @@ namespace App\Services;
 use App\DTO\StreamDTO;
 use App\Http\Requests\StreamStoreRequest;
 use App\Models\Stream;
+use Illuminate\Support\Str;
 
 class StreamService
 {
+    /**
+     * Генерирует и возвращает уникальный ID стрима.
+     * 
+     * @return string
+     */
+    public function generateStreamId(): string
+    {
+        return md5(implode('_', [time(), Str::random(32)]));
+    }
+
     /**
      * Создаёт и возвращает DTO стрима из данных запроса.
      * 
@@ -19,7 +30,7 @@ class StreamService
         $user = auth()->user();
 
         $data = array_merge($request->validated(), [
-            'streamId' => md5(time()),
+            'streamId' => $this->generateStreamId(),
             'type' => 'liveStream',
             'status' => 'created',
             'username' => $user->name,
