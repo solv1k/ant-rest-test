@@ -16,7 +16,17 @@ class StreamService
      */
     public function generateStreamId(): string
     {
-        return md5(implode('_', [time(), Str::random(32)]));
+        return md5(implode('_', [auth()->id(), Str::random(32), time(), 'ID']));
+    }
+
+    /**
+     * Генерирует и возвращает пароль для стрима.
+     * 
+     * @return string
+     */
+    public function generateStreamPassword(): string
+    {
+        return md5(implode('_', [auth()->id(), Str::random(32), time(), 'PASSWORD']));
     }
 
     /**
@@ -34,7 +44,7 @@ class StreamService
             'type' => 'liveStream',
             'status' => 'created',
             'username' => $user->name,
-            'password' => $user->generateStreamPassword()
+            'password' => $this->generateStreamPassword()
         ]);
 
         return new StreamDTO($data);

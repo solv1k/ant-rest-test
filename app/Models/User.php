@@ -44,14 +44,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Генерирует пароль для стрима.
-     */
-    public function generateStreamPassword()
-    {
-        return md5(implode('_', [$this->id, Str::random(32), time()]));
-    }
-
-    /**
      * Стримы пользователя.
      */
     public function streams()
