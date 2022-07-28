@@ -18,7 +18,7 @@ class StreamController extends RestApiController
         $streams = collect($streams)->map(fn($stream) => new StreamDTO($stream));
 
         // возвращаем вьюшку с данными стримов
-        return view('streams.list-from-ant', compact('streams', 'debug'));
+        return view('streams.list-from-ant', compact('streams'));
     }
 
     // форма создания стрима
