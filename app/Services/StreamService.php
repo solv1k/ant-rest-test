@@ -4,13 +4,16 @@ namespace App\Services;
 
 use App\DTO\StreamDTO;
 use App\Http\Requests\StreamStoreRequest;
+use App\Models\Stream;
 
 class StreamService
 {
     /**
      * Создаёт и возвращает DTO стрима из данных запроса.
+     * 
+     * @return StreamDTO
      */
-    public function createDtoFromStoreRequest(StreamStoreRequest $request)
+    public function createDtoFromStoreRequest(StreamStoreRequest $request): StreamDTO
     {
         /** @var \App\Models\User */
         $user = auth()->user();
@@ -28,8 +31,10 @@ class StreamService
 
     /**
      * Создаёт стрим в БД, добавляет данные из Ant Media Server и возвращает модель стрима.
+     * 
+     * @return Stream
      */
-    public function storeWithAntData(StreamStoreRequest $request, array $antStreamData)
+    public function storeWithAntData(StreamStoreRequest $request, array $antStreamData): Stream
     {
         $antStreamDTO = new StreamDTO($antStreamData);
 
