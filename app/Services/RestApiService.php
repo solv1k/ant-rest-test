@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
  */
 class RestApiService implements RestApiServiceContract
 {
-    /** Статус успешного ответа */
+    /** Код успешного ответа */
     const SUCCESS_STATUS_CODE = 200;
 
     /** @var \GuzzleHttp\ClientInterface */
@@ -44,28 +44,20 @@ class RestApiService implements RestApiServiceContract
             $uri = substr($uri, 1);
         }
 
-        switch ($method) {
-            case 'GET':
-                $response = $this->client->request('GET', $uri . '?' . http_build_query($params));
-                break;
-
-            case 'POST':
-                $response = $this->client->request('POST', $uri, [
-                    'json' => $params
-                ]);
-                break;
-
-            default:
-                throw new Exception("Неизвестный метод запроса.");
-        }
+        $response = match($method) {
+            'GET' => $this->client->request('GET', $uri . '?' . http_build_query($params)),
+            'POST' => $this->client->request('POST', $uri, ['json' => $params]),
+            default => throw new Exception("Неизвестный метод запроса.")
+        };
 
         $statusCode = $response->getStatusCode();
 
         if ($statusCode !== self::SUCCESS_STATUS_CODE) {
-            if ($onError)
+            if ($onError) {
                 $onError($statusCode);
-            else
+            } else {
                 throw new Exception("[$statusCode] Ошибка запроса к Rest API: " . $response->getBody()->getContents());
+            }
         }
 
         return json_decode($response->getBody()->getContents(), true);
