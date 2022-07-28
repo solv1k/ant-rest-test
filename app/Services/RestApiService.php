@@ -40,7 +40,7 @@ class RestApiService implements RestApiServiceContract
     ): array {
         $method = strtoupper($method);
 
-        if (Str::startsWith($uri, '/')) {
+        if (Str::of($uri)->startsWith('/')) {
             $uri = substr($uri, 1);
         }
 
