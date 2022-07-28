@@ -5,7 +5,6 @@ namespace App\Services;
 use App\DTO\StreamDTO;
 use App\Http\Requests\StreamStoreRequest;
 use App\Models\Stream;
-use Illuminate\Support\Str;
 
 class StreamService
 {
@@ -16,7 +15,7 @@ class StreamService
      */
     public function generateStreamId(): string
     {
-        return md5(implode('_', [auth()->id(), Str::random(32), time(), 'ID']));
+        return md5(implode('_', [auth()->id(), bin2hex(random_bytes(32)), 'ID']));
     }
 
     /**
@@ -26,7 +25,7 @@ class StreamService
      */
     public function generateStreamPassword(): string
     {
-        return md5(implode('_', [auth()->id(), Str::random(32), time(), 'PASSWORD']));
+        return md5(implode('_', [auth()->id(), bin2hex(random_bytes(32)), 'PASSWORD']));
     }
 
     /**
