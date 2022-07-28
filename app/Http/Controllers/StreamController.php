@@ -33,10 +33,10 @@ class StreamController extends RestApiController
         // получаем DTO из сырых данных запроса
         $streamDTO = $this->streamService->createDtoFromStoreRequest($request);
 
-        // создаём новый стрим через API и получаем данные созданного стрима
+        // создаём новый стрим в Ant Media Server и получаем данные созданного стрима
         $antStreamData = $this->restApiService->post("/v2/broadcasts/create", $streamDTO->toArray());
 
-        // сохраняем стрим в БД (добавляем данные из API)
+        // сохраняем стрим в БД (добавляем данные из Ant Media Server)
         $stream = $this->streamService->storeWithAntData($request, $antStreamData);
 
         // редиректим на главную
