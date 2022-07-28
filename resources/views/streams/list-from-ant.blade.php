@@ -2,14 +2,8 @@
 
 @section('dash-title', __('Streams'))
 
-@section('dash-debug')
-    @php
-        print_r($debug)
-    @endphp
-@endsection
-
 @section('dash-content')
-    <h3>Список стримов</h3>
+    <h3>Список стримов из Ant Media Server</h3>
     <div class="d-flex justify-content-end">
         <a class="btn btn-primary" href="{{ route('stream-create-form') }}">Добавить стрим</a>
     </div>
